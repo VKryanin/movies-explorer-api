@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/VKryanin/movies-explorer-api#readme",
   "devDependencies": {
-    "eslint": "^8.44.0",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint": "^8.45.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
     "nodemon": "^2.0.22"
@@ -34,9 +36,10 @@
     "express": "^4.18.2",
     "express-rate-limit": "^6.7.0",
     "express-winston": "^4.2.0",
+    "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.3.1",
     "validator": "^13.9.0",
-    "winston": "^3.8.2"
+    "winston": "^3.10.0"
   }
 }
