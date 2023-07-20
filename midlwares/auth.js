@@ -16,7 +16,7 @@ module.exports = function auth(req, res, next) {
   try {
     const token = req.headers.authorization.split(' ')[1];
     if (!token) return TokenWrong(res, req, next);
-    
+
     payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev');
   } catch (err) {
     return TokenWrong(res, req, next);
@@ -24,6 +24,5 @@ module.exports = function auth(req, res, next) {
 
   req.user = payload;
 
-  next();
+  return next();
 };
-

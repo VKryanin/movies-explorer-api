@@ -6,9 +6,9 @@ const jwt = require('jsonwebtoken');
 const { security } = require('../utils/config');
 
 const User = require('../models/user');
-const NotFoundError = require('../utils/errors/NotFoundError');
-const IncorrectRequestError = require('../utils/errors/IncorrectRequestError');
-const EmailIsBusyError = require('../utils/errors/EmailIsBusyError');
+const { NotFoundError } = require('../utils/errors/NotFoundError');
+const { IncorrectRequestError } = require('../utils/errors/IncorrectRequestError');
+const { EmailIsBusyError } = require('../utils/errors/EmailIsBusyError');
 
 const addUser = (req, res, next) => {
   const { email, password, name } = req.body;
@@ -31,16 +31,14 @@ const addUser = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  console.log(email, password);
   User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, security, { expiresIn: '7d' });
       res.send({ token });
-      console.log(123);
     })
     .catch((err) => {
-      console.log(err);
-      next(err)});
+      next(err);
+    });
 };
 
 const getUser = (req, res, next) => {

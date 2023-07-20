@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { addUser, login } = require('../controllers/user');
 const auth = require('../midlwares/auth');
-const NotFoundError = require('../utils/errors/NotFoundError');
+const { NotFoundError } = require('../utils/errors/NotFoundError');
 const { validateLogin, validateRegister } = require('../utils/validationConfig');
 
 router.use('/users', auth, require('./userRouter'));

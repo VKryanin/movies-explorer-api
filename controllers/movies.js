@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const { ValidationError } = mongoose.Error;
 
 const Movie = require('../models/movie');
-const IncorrectRequestError = require('../utils/errors/IncorrectRequestError');
-const NotFoundError = require('../utils/errors/NotFoundError');
-const DeletionError = require('../utils/errors/DeletionError');
+const { IncorrectRequestError } = require('../utils/errors/IncorrectRequestError');
+const { NotFoundError } = require('../utils/errors/NotFoundError');
+const { DeletionError } = require('../utils/errors/DeletionError');
 
 const addMovie = (req, res, next) => {
   Movie.create({ owner: req.user._id, ...req.body })
