@@ -6,11 +6,13 @@ const Movie = require('../models/movie');
 const { IncorrectRequestError } = require('../utils/errors/IncorrectRequestError');
 const { NotFoundError } = require('../utils/errors/NotFoundError');
 const { DeletionError } = require('../utils/errors/DeletionError');
+const { log } = require('winston');
 
 const addMovie = (req, res, next) => {
   Movie.create({ owner: req.user._id, ...req.body })
     .then((movie) => res.status(201).send({ data: movie }))
     .catch((err) => {
+      console.log(err);
       if (err instanceof ValidationError) {
         next(new IncorrectRequestError(err.message));
       } else {
