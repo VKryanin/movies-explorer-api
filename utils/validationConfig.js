@@ -1,6 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
 
-const REGEX_URL = /^(https?:\/\/)(www\.)?[a-zA-Z0-9-._~:/?#[\]@!$&amp;'()*+,;=]+(\.[a-z]{2,3})+(\/?)+#?$/;
+const REGEX_URL = /(http:\/\/(?:www.|(?!www))[A-z0-9-]+\.[^\s]+)|(https:\/\/(?:www.|(?!www))[A-z0-9-]+\.[^\s]+)/;
 
 const validateLogin = celebrate({
   body: Joi.object().keys({
@@ -17,7 +17,7 @@ const validateRegister = celebrate({
   }),
 });
 
-const validatePatchUser = celebrate({
+const validateUpdatedUserData = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     name: Joi.string().min(2).max(30).required(),
@@ -49,7 +49,7 @@ const validateNewMovie = celebrate({
 module.exports = {
   validateLogin,
   validateRegister,
-  validatePatchUser,
+  validateUpdatedUserData,
   validateMovieId,
   validateNewMovie,
 };
